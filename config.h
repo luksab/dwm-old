@@ -69,6 +69,10 @@ static const char *upvol[] = {"/usr/bin/pactl", "set-sink-volume", "0", "+5%", N
 static const char *downvol[] = {"/usr/bin/pactl", "set-sink-volume", "0", "-5%", NULL};
 static const char *mutevol[] = {"/usr/bin/pactl", "set-sink-mute", "0", "toggle", NULL};
 
+static const char *SpotifyPlayPause[] = {"dbus-send", "--print-reply", "--dest=org.mpris.MediaPlayer2.spotifyd", "/org/mpris/MediaPlayer2", "org.mpris.MediaPlayer2.Player.PlayPause", NULL};
+static const char *SpotifyPrevious[] = {"dbus-send", "--print-reply", "--dest=org.mpris.MediaPlayer2.spotifyd", "/org/mpris/MediaPlayer2", "org.mpris.MediaPlayer2.Player.Previous", NULL};
+static const char *SpotifyNext[] = {"dbus-send", "--print-reply", "--dest=org.mpris.MediaPlayer2.spotifyd", "/org/mpris/MediaPlayer2", "org.mpris.MediaPlayer2.Player.Next", NULL};
+
 // screen brightness
 static const char *brightness_up[] = {"xbacklight", "+10", NULL};
 static const char *brightness_down[] = {"xbacklight", "-10", NULL};
@@ -116,6 +120,11 @@ static Key keys[] = {
 	//screen brightness
 	{0, XF86XK_MonBrightnessUp, spawn, {.v = brightness_up}},
 	{0, XF86XK_MonBrightnessDown, spawn, {.v = brightness_down}},
+
+	//spotifyd control
+	{0, XF86XK_AudioPlay, spawn, {.v = SpotifyPlayPause}},
+	{0, XF86XK_AudioPrev, spawn, {.v = SpotifyPrevious}},
+	{0, XF86XK_AudioNext, spawn, {.v = SpotifyNext}},
 };
 
 /* button definitions */
