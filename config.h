@@ -69,9 +69,14 @@ static const char *upvol[] = {"/usr/bin/pactl", "set-sink-volume", "0", "+5%", N
 static const char *downvol[] = {"/usr/bin/pactl", "set-sink-volume", "0", "-5%", NULL};
 static const char *mutevol[] = {"/usr/bin/pactl", "set-sink-mute", "0", "toggle", NULL};
 
+//media commands for spotifyd
 static const char *SpotifyPlayPause[] = {"dbus-send", "--print-reply", "--dest=org.mpris.MediaPlayer2.spotifyd", "/org/mpris/MediaPlayer2", "org.mpris.MediaPlayer2.Player.PlayPause", NULL};
 static const char *SpotifyPrevious[] = {"dbus-send", "--print-reply", "--dest=org.mpris.MediaPlayer2.spotifyd", "/org/mpris/MediaPlayer2", "org.mpris.MediaPlayer2.Player.Previous", NULL};
 static const char *SpotifyNext[] = {"dbus-send", "--print-reply", "--dest=org.mpris.MediaPlayer2.spotifyd", "/org/mpris/MediaPlayer2", "org.mpris.MediaPlayer2.Player.Next", NULL};
+
+//random bg
+static char randomBGDir[38] = "/home/lukas/Pictures/君の名は。";
+static const char *randomBG[] = {"feh", "--bg-center", "--randomize", randomBGDir, NULL};
 
 // screen brightness
 static const char *brightness_up[] = {"xbacklight", "+10", NULL};
@@ -125,6 +130,9 @@ static Key keys[] = {
 	{0, XF86XK_AudioPlay, spawn, {.v = SpotifyPlayPause}},
 	{0, XF86XK_AudioPrev, spawn, {.v = SpotifyPrevious}},
 	{0, XF86XK_AudioNext, spawn, {.v = SpotifyNext}},
+
+	//random bg
+	{MODKEY | ShiftMask, XK_b, spawn, {.v = randomBG}},
 };
 
 /* button definitions */
