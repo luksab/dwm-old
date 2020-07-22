@@ -1,3 +1,4 @@
+#define PrintScreenDWM 0x0000ff61
 #include <X11/XF86keysym.h>
 
 /* See LICENSE file for copyright and license details. */
@@ -87,6 +88,8 @@ static const char *brightness_down[] = {"xbacklight", "-10", NULL};
 static const char *brightness_up_slight[] = {"xbacklight", "+1", NULL};
 static const char *brightness_down_slight[] = {"xbacklight", "-1", NULL};
 
+static const char *Screenshot[] = {"/home/lukas/scripts/screenshot.sh", NULL};
+// maim -s -u | xclip -selection clipboard -t image/png -i
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{MODKEY, XK_p, spawn, {.v = dmenucmd}},
@@ -140,6 +143,9 @@ static Key keys[] = {
 
 	//random bg
 	{MODKEY | ShiftMask, XK_b, spawn, {.v = randomBG}},
+
+	//screenshot
+	{0, PrintScreenDWM, spawn, {.v = Screenshot}},
 };
 
 /* button definitions */
