@@ -90,6 +90,12 @@ static const char *brightness_down_slight[] = {"xbacklight", "-1", NULL};
 
 static const char *Screenshot[] = {"/home/lukas/scripts/screenshot.sh", NULL};
 // maim -s -u | xclip -selection clipboard -t image/png -i
+
+static const char *rotateIntNormal[] = {"xrandr", "--output", "eDP1", "--rotate", "normal", NULL};
+static const char *rotateIntLeft[] = {"xrandr", "--output", "eDP1", "--rotate", "left", NULL};
+static const char *rotateIntRight[] = {"xrandr", "--output", "eDP1", "--rotate", "right", NULL};
+static const char *rotateIntInv[] = {"xrandr", "--output", "eDP1", "--rotate", "inverted", NULL};
+
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{MODKEY, XK_p, spawn, {.v = dmenucmd}},
@@ -147,6 +153,13 @@ static Key keys[] = {
 
 	//screenshot
 	{0, PrintScreenDWM, spawn, {.v = Screenshot}},
+
+	//Monitor rotation
+	{MODKEY | ShiftMask, XK_Up, spawn, {.v = rotateIntNormal}},
+	{MODKEY | ShiftMask, XK_Left, spawn, {.v = rotateIntLeft}},
+	{MODKEY | ShiftMask, XK_Right, spawn, {.v = rotateIntRight}},
+	{MODKEY | ShiftMask, XK_Down, spawn, {.v = rotateIntInv}},
+
 };
 
 /* button definitions */
